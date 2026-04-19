@@ -31,5 +31,5 @@ Nếu bạn muốn tôi hướng dẫn kỹ hơn, hãy cho biết:
 ```shell
 c:/Users/Phuc/PycharmProjects/Split_image_3/venv/Scripts/python.exe -m uvicorn server:app --reload
 
-
+uvicorn server:app --reload
 ```
