@@ -1,6 +1,6 @@
 task: detect
 mode: train
-model: yolov8n.pt
+model: yolo26s.pt
 data: /content/fruit_dataset/data.yaml
 epochs: 50
 time: null
