@@ -32,4 +32,6 @@ Nếu bạn muốn tôi hướng dẫn kỹ hơn, hãy cho biết:
 c:/Users/Phuc/PycharmProjects/Split_image_3/venv/Scripts/python.exe -m uvicorn server:app --reload
 
 uvicorn server:app --reload
+
+(Set-ExecutionPolicy -Scope Process -ExecutionPolicy RemoteSigned) ; (& c:\Users\Phuc\PycharmProjects\Split_image_3\venv\Scripts\Activate.ps1)
 ```
