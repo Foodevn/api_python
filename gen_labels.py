@@ -8,7 +8,7 @@ from pathlib import Path
 MODEL_PATH = "./runs/detect/train/weights/best.pt"
 
 # Thư mục chứa ảnh cần detect
-IMAGE_DIR = Path("./Dataset/chua_co_label/images")
+IMAGE_DIR = Path("./Dataset/chua_co_label/images_rotten")
 
 # Thư mục lưu file YOLO .txt
 LABEL_DIR = Path("./Dataset/chua_co_label/labels")
@@ -61,9 +61,10 @@ for image_path in image_paths:
 
     # Chạy YOLO
     results = model.predict(
-        source=str(image_path),
-        conf=CONF_THRESHOLD,
-        verbose=False
+    source=str(image_path),
+    conf=CONF_THRESHOLD,
+    device=0,       # GPU NVIDIA đầu tiên
+    verbose=False
     )
 
     result = results[0]
