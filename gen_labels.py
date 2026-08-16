@@ -65,7 +65,7 @@ for image_path in image_paths:
     conf=CONF_THRESHOLD,
     device=0,       # GPU NVIDIA đầu tiên
     verbose=False
-    )
+)
 
     result = results[0]
 
