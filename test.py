@@ -1,87 +1,123 @@
-from ultralytics import YOLO
 import cv2
+from ultralytics import YOLO
 
-# =========================
+# ==========================
 # LOAD MODEL
-# =========================
+# ==========================
+model1 = YOLO("./runs/detect/train/weights/best.pt")  # chín/sống/hư
+model2 = YOLO("./runs/segment/train-2/weights/best.pt")  # khuyết tật
 
-MODEL_PATH = "./runs/segment/train-2/weights/best.pt"
-
-model = YOLO(MODEL_PATH)
-
-print("Classes:")
-print(model.names)
-
-
-# =========================
-# MỞ CAMERA
-# =========================
-
+# ==========================
+# CAMERA
+# ==========================
 cap = cv2.VideoCapture(0)
 
 if not cap.isOpened():
-    print("Không thể mở camera!")
+    print("Không mở được camera")
     exit()
 
-
-# Có thể giảm độ phân giải để realtime nhanh hơn
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
-
-
-# =========================
-# REALTIME
-# =========================
-
 while True:
-
     ret, frame = cap.read()
 
     if not ret:
-        print("Không đọc được frame!")
         break
 
+    # ==========================
+    # MODEL 1
+    # ==========================
+    results1 = model1(frame, conf=0.5)
 
-    # =========================
-    # YOLO SEGMENTATION
-    # =========================
+    for result in results1:
 
-    results = model.predict(
-        source=frame,
-        conf=0.5,
-        device=0,          # GPU NVIDIA
-        verbose=False
-    )
+        boxes = result.boxes
 
+        for box in boxes:
 
-    result = results[0]
+            cls_id = int(box.cls[0])
+            conf = float(box.conf[0])
 
+            class_name = model1.names[cls_id]
 
-    # =========================
-    # VẼ KẾT QUẢ
-    # =========================
+            x1, y1, x2, y2 = map(int, box.xyxy[0])
 
-    annotated_frame = result.plot()
+            # Vẽ bbox model 1
+            cv2.rectangle(
+                frame,
+                (x1, y1),
+                (x2, y2),
+                (0, 255, 0),
+                2
+            )
 
+            cv2.putText(
+                frame,
+                f"{class_name} {conf:.2f}",
+                (x1, y1 - 10),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.6,
+                (0, 255, 0),
+                2
+            )
 
-    # =========================
-    # HIỂN THỊ
-    # =========================
+            # ==========================
+            # CROP TRAI DAU
+            # ==========================
+            crop = frame[y1:y2, x1:x2]
 
-    cv2.imshow(
-        "Strawberry Segmentation - Realtime",
-        annotated_frame
-    )
+            if crop.size == 0:
+                continue
 
+            # ==========================
+            # CHỈ CHẠY MODEL 2 KHI HƯ
+            # ==========================
+            if class_name.lower() == "hu":
 
-    # Nhấn Q để thoát
-    if cv2.waitKey(1) & 0xFF == ord("q"):
+                results2 = model2(crop, conf=0.4)
+
+                for r2 in results2:
+
+                    for defect_box in r2.boxes:
+
+                        defect_cls = int(defect_box.cls[0])
+                        defect_conf = float(defect_box.conf[0])
+
+                        defect_name = model2.names[defect_cls]
+
+                        dx1, dy1, dx2, dy2 = map(
+                            int,
+                            defect_box.xyxy[0]
+                        )
+
+                        # Chuyển tọa độ crop -> frame
+                        dx1 += x1
+                        dx2 += x1
+                        dy1 += y1
+                        dy2 += y1
+
+                        cv2.rectangle(
+                            frame,
+                            (dx1, dy1),
+                            (dx2, dy2),
+                            (0, 0, 255),
+                            2
+                        )
+
+                        cv2.putText(
+                            frame,
+                            f"{defect_name} {defect_conf:.2f}",
+                            (dx1, dy1 - 10),
+                            cv2.FONT_HERSHEY_SIMPLEX,
+                            0.5,
+                            (0, 0, 255),
+                            2
+                        )
+
+    cv2.imshow("Strawberry Inspection", frame)
+
+    key = cv2.waitKey(1)
+
+    if key == 27:  # ESC
         break
-
-
-# =========================
-# GIẢI PHÓNG
-# =========================
 
 cap.release()
 cv2.destroyAllWindows()
