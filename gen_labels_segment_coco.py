@@ -8,7 +8,7 @@ import json
 # CẤU HÌNH
 # =========================================================
 
-MODEL_PATH = "./runs/segment/train-2/weights/best.pt"
+MODEL_PATH = "./runs/strawberry_seg/weights/best.pt"
 
 IMAGE_DIR = Path("./Dataset/chua_co_label/images_rotten")
 
@@ -41,11 +41,8 @@ coco = {
     },
 
     "licenses": [],
-
     "images": [],
-
     "annotations": [],
-
     "categories": []
 }
 
