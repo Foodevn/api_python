@@ -9,7 +9,7 @@ from PIL import Image
 
 # Thư mục chứa ảnh
 IMAGE_DIR = Path(
-    r"./Dataset/chua_co_label/images_rotten_50"
+    r"./Dataset/chua_co_label/images"
 )
 
 # Thư mục chứa YOLO segmentation TXT
@@ -19,7 +19,7 @@ LABEL_DIR = Path(
 
 # File COCO đầu ra
 OUTPUT_JSON = Path(
-    r"./Dataset/chua_co_label/annotations.json"
+    r"./Dataset/chua_co_label/annotations1.json"
 )
 
 
@@ -31,17 +31,7 @@ OUTPUT_JSON = Path(
 # 0 = strawberry
 
 CLASS_NAMES = {
-    0:"Angular Leafspot",
-    1:"Anthracnose Fruit Rot",
-    2:"Blossom Blight",
-    3:"Gray Mold",
-    4:"Healthy-Leaf -Strawberry",
-    5:"Healthy-Strawberry",
-    6:"Leaf Spot",
-    7:"Mulch",
-    8:"Powdery Mildew Fruit",
-    9:"Powdery Mildew Leaf",
-    10:"non-edible-Strawberry",
+    0:"strawberry",
 }
 
 

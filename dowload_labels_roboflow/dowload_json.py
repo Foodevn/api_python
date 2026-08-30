@@ -9,7 +9,7 @@ from inference_sdk import InferenceHTTPClient
 # =========================
 
 INPUT_DIR = Path(
-    r"./Dataset/chua_co_label/images_rotten_50"
+    r"./Dataset/chua_co_label/images"
 )
 
 OUTPUT_DIR = Path(
@@ -62,14 +62,14 @@ for index, image_path in enumerate(images, start=1):
 
         result = client.run_workflow(
             workspace_name="hoang-phuc-hzceu",
-            workflow_id="general-segmentation-api-5",
+            workflow_id="general-segmentation-api-6",
 
             images={
                 "image": str(image_path)
             },
 
             parameters={
-                "classes": "Angular Leafspot,Anthracnose Fruit Rot,Blossom Blight,Gray Mold,Healthy-Leaf -Strawberry,Healthy-Strawberry,Leaf Spot,Mulch,Powdery Mildew Fruit,Powdery Mildew Leaf,non-edible-Strawberry"
+                "classes": "Strawberry"
             },
 
             use_cache=True
