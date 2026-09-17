@@ -7,7 +7,7 @@ from pathlib import Path
 # =========================================================
 
 INPUT_DIR = Path("./dataset/group/json")
-OUTPUT_FILE = Path("./dataset/group/annotations-1.json")
+OUTPUT_FILE = Path("./dataset/group/annotations-2.json")
 
 
 # =========================================================

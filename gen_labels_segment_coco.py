@@ -8,12 +8,12 @@ import json
 # CẤU HÌNH
 # =========================================================
 
-MODEL_PATH = "./runs/strawberry_seg/weights/best.pt"
+MODEL_PATH = "./runs/runs_backup_1/runs/strawberry_seg/weights/best.pt"
 
-IMAGE_DIR = Path("./Dataset/chua_co_label/images_rotten")
+IMAGE_DIR = Path("./Dataset/chua_co_label/images")
 
 OUTPUT_JSON = Path(
-    "./Dataset/chua_co_label/annotations.json"
+    "./Dataset/chua_co_label/annotations-test/annotations.json"
 )
 
 CONF_THRESHOLD = 0.5

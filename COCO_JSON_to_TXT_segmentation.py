@@ -7,7 +7,7 @@ from PIL import Image
 # ==========================================
 
 # File COCO JSON tải từ MakeSense
-COCO_JSON = "./Dataset/chua_co_label/annotations-1.json"
+COCO_JSON = "./Dataset/chua_co_label/annotations-8.json"
 
 # Thư mục chứa ảnh
 IMAGE_DIR = "./Dataset/chua_co_label/images"
