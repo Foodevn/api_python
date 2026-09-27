@@ -1,0 +1,19 @@
+[project]
+name = "detect-strawberry"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Foodevn", email = "hoangphuc0918065630@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "pillow>=12.3.0",
+]
+
+[project.scripts]
+detect-strawberry = "detect_strawberry:main"
+
+[build-system]
+requires = ["uv_build>=0.12.11,<0.13.0"]
+build-backend = "uv_build"
