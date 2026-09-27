@@ -1,0 +1,28 @@
+description: Ultralytics YOLO26s-seg model trained on /kaggle/working/strawberry_dataset/data.yaml
+author: Ultralytics
+date: '2026-09-27T09:34:04.872818+07:00'
+version: 8.4.163
+license: AGPL-3.0 License (https://ultralytics.com/license)
+docs: https://docs.ultralytics.com
+stride: 32
+task: segment
+head: Segment26
+batch: 1
+imgsz:
+- 1024
+- 1024
+names:
+  0: anthracnose-fruit-rot
+  1: powdery-mildew-fruit
+  2: gray-mold
+  3: ripe
+  4: unripe
+args:
+  data: null
+  batch: 1
+  fraction: 1.0
+  quantize: 16
+  nms: null
+  dynamic: false
+channels: 3
+end2end: false

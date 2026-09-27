@@ -7,13 +7,13 @@ from PIL import Image
 # ==========================================
 
 # File COCO JSON tải từ MakeSense
-COCO_JSON = "./Dataset/chua_co_label/annotations/annotations-images3.json"
+COCO_JSON = "../../Dataset/chua_co_label/annotations/annotations-images3.json"
 
 # Thư mục chứa ảnh
-IMAGE_DIR = "./Dataset/chua_co_label/images3"
+IMAGE_DIR = "../../Dataset/chua_co_label/images3"
 
 # Thư mục lưu YOLO labels
-LABEL_DIR = "./Dataset/chua_co_label/labels3"
+LABEL_DIR = "../../Dataset/chua_co_label/labels3"
 
 # ==========================================
 # TẠO THƯ MỤC

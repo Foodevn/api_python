@@ -5,7 +5,7 @@ from pathlib import Path
 # CẤU HÌNH
 # =========================
 
-MODEL_PATH = "./runs/segment/train-2/weights/best.pt"
+MODEL_PATH = "../../runs/segment/train-2/weights/best.pt"
 
 # Thư mục chứa ảnh cần auto-label
 IMAGE_DIR = Path("./Dataset/chua_co_label/images_rotten")
